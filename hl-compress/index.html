@@ -1,0 +1,47 @@
+<html>
+<head>
+<style>
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+#source {
+	width: 100%;
+}
+</style>
+</head>
+<body>
+	<textarea id="source" rows="40">function typescript() {
+  var a = (function() {
+    function a() {}
+    a.prototype.b = 1;
+    return a;
+  }());
+}
+function inlining() {
+  function f() {
+    var x = global();
+    return x();
+  }
+  return f(global());
+}
+function splitting() {
+  var o = {
+    a: 1,
+    b: 2
+  };
+  global(o.a);
+  o.b = 3;
+  global(o.a, o.b);
+}
+function renaming() {
+  let x = global();
+  let y = x;
+  global(x, y);
+}</textarea>
+	<div><button id="button">Compile</button></div>
+	<pre id="result"></pre>
+	<script src="bundle.js"></script>
+</body>
+</html>
