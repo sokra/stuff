@@ -20,10 +20,15 @@ html, body {
   }());
 }
 function inlining() {
+  function g(x) {
+    console.log(x);
+    global(x + 1);
+  }
   function f() {
     var x = global();
     return x();
   }
+  g("Hello");
   return f(global());
 }
 function splitting() {
